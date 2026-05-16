@@ -40,20 +40,22 @@ function arithemticCalculator(operation){
     
     if(operation=="sum"){
         result=num1+num2;
+        document.getElementById("result").innerHTML="Sum = " + result;
     }
 
     else if(operation=="sub"){
         result=num1-num2;
+        document.getElementById("result").innerHTML="Subtraction = " + result;
     }
 
     else if(operation=="mul"){
         result=num1*num2;
+        document.getElementById("result").innerHTML="Multiplication = " + result;
     }
 
     else if (operation=="div"){
         result=num1/num2;
+        document.getElementById("result").innerHTML=" Divison= " + result;
     }
-
-    document.getElementById("result").innerHTML="Result=" + result;
 
 }
