@@ -55,7 +55,7 @@ function arithemticCalculator(operation){
 
     else if (operation=="div"){
         result=num1/num2;
-        document.getElementById("result").innerHTML=" Divison= " + result;
+        document.getElementById("result").innerHTML="Divison = " + result;
     }
 
 }
