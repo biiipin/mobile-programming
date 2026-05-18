@@ -2,20 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATM</title>
+    <title>Simple Bank System</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <h1> Banking System </h1>
-    <h2 id="totalamount"> Total Balance : 10000</h2>
-    
-    <input type ="number" id="amt" placeholder="Enter an amount"> <br> <br>
-    <button onclick="withdraw()"> Withdraw </button>
-    <button onclick="deposit()"> Deposit</button>
+    <h1>Bank System</h1>
+
+    <h2>
+        Bank Balance: Rs.
+        <span id="balance">******</span>
+
+        <i class="fa-solid fa-eye-slash" id="eyeIcon"></i>
+    </h2>
 
     <p id="invalid"></p>
 
-    <script src=script.js></script>
+    <button id="depositBtn">Deposit</button>
+    <button id="withdrawBtn">Withdraw</button>
+
+    <br><br>
+
+    
+    <div id="depositBox" style="display:none;">
+
+        <input type="number" id="num1"
+        placeholder="Enter amount to Deposit">
+
+        <br><br>
+
+        <button id="confirmDeposit">Confirm Deposit</button>
+
+    </div>
+
+
+    <div id="withdrawBox" style="display:none;">
+
+        <input type="number" id="num2"
+        placeholder="Enter amount to Withdraw">
+
+        <br><br>
+
+        <button id="confirmWithdraw">Confirm Withdraw</button>
+
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+   
+    <script src="script.js"></script>
+
 </body>
 </html>
