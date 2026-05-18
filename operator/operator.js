@@ -58,4 +58,7 @@ function arithemticCalculator(operation){
         document.getElementById("result").innerHTML="Divison = " + result;
     }
 
+    else{
+        document.getElementById("result").innerHTML="Invalid Operation";
+    }
 }
