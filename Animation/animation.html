@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Animate</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script>
+    
+$(document).ready(function () {
+
+    $("button").click(function () {
+
+        $("div").animate({
+            left: "250px",
+            opacity: 0.3,
+            "backgroundColor":"red",
+        }, "slow", function () {
+
+            $(this).animate({
+                top: "250px",
+                opacity: 0.8,
+                "backgroundColor":"yellow",
+            }, "slow", function () {
+
+                $(this).animate({
+                    left: "0px",
+                    opacity: 0.3,
+                    "backgroundColor":"green",
+                }, "slow", function () {
+
+                    $(this).animate({
+                        top: "50px",
+                        opacity: 0.8,
+                        "backgroundColor":"blue",
+                    }, "slow");
+
+                });
+
+            });
+
+        });
+
+    });
+
+});
+</script>
+
+    </script>
+
+</head>
+
+<body>
+    <button>Start</button> <br> <br>
+
+
+    <div style="
+        background-color:rgb(138, 133, 133);
+        height:100px;
+        width:100px;
+        position:absolute;
+    ">
+    </div>
+
+</body>
+</html>
