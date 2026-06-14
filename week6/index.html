@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase CRUD</title>
+</head>
+<body>
+
+  <h2>Create User</h2>
+  <input id="create-id" placeholder="User ID">
+  <input id="create-firstname" placeholder="First Name">
+  <input id="create-lastname" placeholder="Last Name">
+  <input id="create-age" placeholder="Age">
+  <input id="create-address" placeholder="Address">
+
+  <button onclick="writeUserData(
+    document.getElementById('create-id').value,
+    document.getElementById('create-firstname').value,
+    document.getElementById('create-lastname').value,
+    document.getElementById('create-age').value,
+    document.getElementById('create-address').value
+  )">
+    Add User
+  </button>
+
+  <hr>
+
+  <h2>Read User</h2>
+  <input id="read-id" placeholder="User ID">
+  <button onclick="readUserById(document.getElementById('read-id').value)">
+    Get User
+  </button>
+
+  <p id="read-result"></p>
+
+  <hr>
+
+  <h2>Update User</h2>
+  <input id="update-id" placeholder="User ID">
+  <button onclick="fetchUserForUpdate(document.getElementById('update-id').value)">
+    Load User
+  </button>
+
+  <br><br>
+
+  <input id="update-firstname" placeholder="First Name">
+  <input id="update-lastname" placeholder="Last Name">
+  <input id="update-age" placeholder="Age">
+  <input id="update-address" placeholder="Address">
+
+  <button onclick="updateUserData(
+    document.getElementById('update-id').value,
+    {
+      firstname: document.getElementById('update-firstname').value,
+      lastname: document.getElementById('update-lastname').value,
+      age: document.getElementById('update-age').value,
+      address: document.getElementById('update-address').value
+    }
+  )">
+    Update User
+  </button>
+
+  <hr>
+
+  <h2>Delete User</h2>
+  <input id="delete-id" placeholder="User ID">
+  <button onclick="deleteUserData(document.getElementById('delete-id').value)">
+    Delete User
+  </button>
+
+  <script type="module" src="scripts.js"></script>
+
+</body>
+</html>
