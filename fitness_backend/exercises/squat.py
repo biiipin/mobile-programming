@@ -4,15 +4,11 @@ import time
 
 from poseModule import PoseDetector
 
-
-
-GREEN = (0,220,80)
-RED = (0,0,255)
-
+GREEN = (0, 220, 80)
+RED = (0, 0, 255)
 
 
 class SquatCounter:
-
 
     def __init__(self):
 
@@ -22,110 +18,58 @@ class SquatCounter:
 
         self.color = RED
 
+        self.detector = PoseDetector(detectionCon=0.6, trackCon=0.6)
 
-        self.detector = PoseDetector(
-            detectionCon=0.6,
-            trackCon=0.6
-        )
+    def calculate_angle(self, a, b, c):
 
+        a = np.array(a)
+        b = np.array(b)
+        c = np.array(c)
 
+        ab = a - b
+        bc = c - b
 
-    def calculate_angle(self,a,b,c):
+        denom = np.linalg.norm(ab) * np.linalg.norm(bc)
 
-
-        a=np.array(a)
-        b=np.array(b)
-        c=np.array(c)
-
-
-
-        ab=a-b
-        bc=c-b
-
-
-
-        denom=np.linalg.norm(ab)*np.linalg.norm(bc)
-
-
-        if denom==0:
+        if denom == 0:
 
             return 180
 
+        cosine = np.dot(ab, bc) / denom
 
+        cosine = np.clip(cosine, -1.0, 1.0)
 
-        cosine=np.dot(ab,bc)/denom
+        return np.degrees(np.arccos(cosine))
 
+    def update_count(self, angle):
 
-        cosine=np.clip(
-            cosine,
-            -1.0,
-            1.0
-        )
-
-
-        return np.degrees(
-            np.arccos(cosine)
-        )
-
-
-
-
-    def update_count(self,angle):
-
-
-        color=RED
-
-
+        color = RED
 
         if angle > 160:
 
+            self.stage = "UP"
 
-            self.stage="UP"
+            color = RED
 
-            color=RED
-
-
-
-
-        elif angle < 120 and self.stage=="UP":
-
+        elif angle < 120 and self.stage == "UP":
 
             self.count += 1
 
-            self.stage="DOWN"
+            self.stage = "DOWN"
 
-            color=GREEN
+            color = GREEN
 
+        self.color = color
 
+    def process(self, frame):
 
-        self.color=color
+        frame = self.detector.findPose(frame, False)
 
+        lm = self.detector.findPosition(frame, False)
 
-
-
-
-    def process(self,frame):
-
-
-        frame = self.detector.findPose(
-            frame,
-            False
-        )
-
-
-
-        lm = self.detector.findPosition(
-            frame,
-            False
-        )
-
-
-
-        if lm and len(lm)>28:
-
+        if lm and len(lm) > 28:
 
             try:
-
 
                 right_hip = lm[24][1:]
 
@@ -133,30 +77,12 @@ class SquatCounter:
 
                 right_ankle = lm[28][1:]
 
+                knee_angle = self.calculate_angle(right_hip, right_knee, right_ankle)
 
-
-                knee_angle = self.calculate_angle(
-
-                    right_hip,
-
-                    right_knee,
-
-                    right_ankle
-
-                )
-
-
-
-                self.update_count(
-                    knee_angle
-                )
-
-
+                self.update_count(knee_angle)
 
             except Exception:
 
                 pass
-
-
 
         return self.count

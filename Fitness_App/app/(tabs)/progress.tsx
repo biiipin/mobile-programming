@@ -6,7 +6,13 @@ import {
   TrendingUp,
 } from "lucide-react-native";
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Svg, {
   Circle,
   Defs,
@@ -44,7 +50,12 @@ const EXERCISE_DATA = [
 ];
 
 const METRICS = [
-  { label: "Total Workouts", value: "47", icon: Activity, color: Colors.primary },
+  {
+    label: "Total Workouts",
+    value: "47",
+    icon: Activity,
+    color: Colors.primary,
+  },
   { label: "Total Reps", value: "5,240", icon: Dumbbell, color: Colors.accent },
   { label: "Total Time", value: "18h", icon: Timer, color: Colors.secondary },
   { label: "Calories", value: "12.4k", icon: Flame, color: Colors.warning },

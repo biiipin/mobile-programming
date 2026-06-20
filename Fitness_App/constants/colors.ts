@@ -46,14 +46,7 @@ export const Colors = {
   },
 
   // Chart palette
-  chart: [
-    "#4F46E5",
-    "#06B6D4",
-    "#22C55E",
-    "#F59E0B",
-    "#3B82F6",
-    "#EF4444",
-  ],
+  chart: ["#4F46E5", "#06B6D4", "#22C55E", "#F59E0B", "#3B82F6", "#EF4444"],
 } as const;
 
 export const Spacing = {
